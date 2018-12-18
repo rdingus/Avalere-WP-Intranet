@@ -228,16 +228,42 @@ $white_paper_pdf = get_field('white_paper_pdf', $post_id);
       <div class = "wpb_wrapper post-container"> 
         <!--<div class = "vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_border_width_2 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_grey"> <span class = "vc_sep_holder vc_sep_holder_l"> <span class = "vc_sep_line"></span> </span> <span class = "vc_sep_holder vc_sep_holder_r"> <span class = "vc_sep_line"></span> </span> </div>-->
         <div class = "post_summary">
+          <?php
+            if (has_category('webinars')) {
+
+                $start_date = get_field('start_time',$postId);
+                $end_date = get_field('end_time',$postId);
+                $current_date = date('YmdHis'); //2018-06-14 13:00:00
+                
+                if (isset($start_date) && $start_date != "" && isset($end_date) && $end_date) {
+                  
+                  $start_time = strtotime($start_date);
+                  $end_time = strtotime($end_date);
+                  $current_time = strtotime($current_date);
+
+                  // if Webinar date / time has not passed, display additional details
+                  if($current_time < $end_time) {
+                    echo("<h2>Webinar Details</h2>");
+                    echo(the_title() . "<br />");
+                    echo(date("F j, Y", $start_time) . "<br />");
+                    echo(date("g", $start_time) ."&ndash;". date("g A", $end_time) ." ET");
+                    echo("<h2>&nbsp;</h2>");
+                  }
+
+                }
+                
+            }
+          ?>
+
           <h2>Summary</h2>
-          <?php the_field('post_summary');
-                    ?>
+          <?php the_field('post_summary');?>
         </div>
         <?php
-                $extraClass = '';
-                if (has_category('videos')) {
-                    $extraClass = 'video-devider';
-                }
-                ?>
+          $extraClass = '';
+          if (has_category('videos')) {
+              $extraClass = 'video-devider';
+          }
+        ?>
         <!--<div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_border_width_2 vc_sep_pos_align_center vc_separator_no_text vc_sep_color_grey <?php //echo $extraClass; ?>"> <span class="vc_sep_holder vc_sep_holder_l"> <span class="vc_sep_line"></span> </span> <span class="vc_sep_holder vc_sep_holder_r"> <span class="vc_sep_line"></span> </span> </div>--> 
       </div>
     </div>
