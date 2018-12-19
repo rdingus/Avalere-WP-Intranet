@@ -35,10 +35,25 @@ class vcTeam extends WPBakeryShortCode
         $args   = array(
             'post_type' => 'emd_employee',
             'order' => 'ASC',
-            'orderby' => 'title',
+            // order by EMD last name
+            'meta_key' => 'emd_employee_lastname',
+			'orderby' => 'meta_value title',
             'posts_per_page' => -1,
-            'post_status' => 'publish',			
-			'meta_query'=>array(array('key'=>'remove_from_the_list','value'=>0,'compare'=>'='))			
+            'post_status' => 'publish',
+			// include newly loaded employees that do not have remove_from_the_list value set 
+			'meta_query'=>array(
+					'relation'=>'OR',
+					array(
+						'key' => 'remove_from_the_list',
+						'value' => 0,
+						'compare' => '=',
+				      ),
+					  array(
+						'key' => 'remove_from_the_list',
+						'value' => '',
+						'compare' => 'NOT EXISTS',
+				      )
+				)		
         );
         $object = new WP_Query($args);
 		
