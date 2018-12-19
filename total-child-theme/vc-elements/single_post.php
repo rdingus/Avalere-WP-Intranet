@@ -106,8 +106,21 @@ array(
 		) , $atts));
 		$postObject = get_post($posts);		
 		$postTitle = $postObject->post_title;
-	//	$postMedia = wp_get_post_terms( $postObject->ID, 'category' );	
+
+		// prepend media type category to post titles
+		if(has_category(5,$postObject->ID)){
+            $catname = 'Podcast: ';
+        }elseif(has_category(4,$postObject->ID)){
+            $catname = 'Video: ';
+        }elseif(has_category(6,$postObject->ID)){
+            $catname = 'Webinar: ';
+        }else{
+            $catname = '';
+        }
+
+		//$postMedia = wp_get_post_terms( $postObject->ID, 'category' );	
 		//$postMediaString = implode('<span>|</span>',array_map(function($cat){ return '<a href="'.get_term_link($cat).'">'.$cat->name.'</a>';},$postMedia));
+		
 		$postCategories = wp_get_post_terms( $postObject->ID, 'content-categories' );	
 		$postCategoriesString = implode('<span> | </span>',array_filter(array_map(function($cat){ 	
 		return $cat->parent == 0 ? '<a href="'.get_term_link($cat).'">'.$cat->name.'</a>': '';},$postCategories)));
@@ -161,7 +174,7 @@ if($image){
 		}
 		$output .= '<div class="contentWrapper">';
 				$output .= '<div class="categoriesWrapper">'.$postTagsString.'</div>';
-				$output .= '<a href="'.$postURL.'"><h2>'.$postTitle.'</h2></a>';
+				$output .= '<a href="'.$postURL.'"><h2>'.$catname.$postTitle.'</h2></a>';
 				//$output .= '<a href="'.$postURL.'"><h2>'.$out = strlen($postTitle) > 130 ? substr($postTitle,0,65)."..." : $postTitle.'</h2></a>';
 		$output .= '</div>';		
 			

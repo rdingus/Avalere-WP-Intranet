@@ -77,9 +77,24 @@ $classes[] = 'col-' . $wpex_count;
       </li>
       <?php }?>
     </ul>
+      <?php
+      // display category in post title for Contet Category landing pages, Service landing page, Service detail pages, Audience pages
+      $catname = '';
+      if(is_single() || is_tax('content-categories') || 'service' == get_post_type() || is_page('services') || is_page(9025) || is_page(12152) || is_page(12154) || is_page(12156) ) {
+        if(has_category(5,get_the_ID())){
+            $catname = 'Podcast: ';
+        }elseif(has_category(4,get_the_ID())){
+            $catname = 'Video: ';
+        }elseif(has_category(6,get_the_ID())){
+            $catname = 'Webinar: ';
+        }else{
+            $catname = '';
+        }
+      }
+      ?>
     <h4 class="related-post-title entry-title"> <a href="<?php wpex_permalink(); ?>" rel="bookmark">
       <?php //$hout = the_title(); $tout = strlen($hout) > 60 ? substr($hout,0,60)."..." : $hout;?>
-      <?php echo wp_trim_words( get_the_title(), 9, '...' ); ?>
+      <?php echo $catname . wp_trim_words( get_the_title(), 9, '...' ); ?>
       <?php //the_title()?>
       </a> </h4>
     <!-- .related-post-title -->

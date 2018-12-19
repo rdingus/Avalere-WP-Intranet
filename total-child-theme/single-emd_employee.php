@@ -181,6 +181,18 @@ $post_authors = get_field('post_authors',$post->ID);
                             <?php
                             foreach ($posts as $postauthor) {
                                 $postTitle = $postauthor->post_title;
+
+                                // prepend media type category to post titles
+                                if(has_category(5,$postauthor->ID)){
+                                    $catname = 'Podcast: ';
+                                }elseif(has_category(4,$postauthor->ID)){
+                                    $catname = 'Video: ';
+                                }elseif(has_category(6,$postauthor->ID)){
+                                    $catname = 'Webinar: ';
+                                }else{
+                                    $catname = '';
+                                }  
+
                                 if (has_post_thumbnail($postauthor->ID)) {
                                     $objectImage = wp_get_attachment_image_src(get_post_thumbnail_id($postauthor), 'full');
                                     $postimage = $objectImage[0];
@@ -193,9 +205,7 @@ $post_authors = get_field('post_authors',$post->ID);
                                             return '<a href="'.get_term_link($cat).'">'.$cat->name.'</a>';
                                         }, $postMedia));
 										
-										
                                 $postCategories = wpex_list_post_terms_custom('content-categories',true,false,$postauthor->ID);
-
                                 
                                 $desc = get_field('post_summary', $postauthor->ID);
                                 ?>
@@ -206,7 +216,7 @@ $post_authors = get_field('post_authors',$post->ID);
                                     <div class="vc_column_container vc_col-sm-12 custom-padding">
                                     	<div class="postmeta"><span class="date"><?php echo date(get_option("date_format"), strtotime($postauthor->post_date)); ?></span> | <span class="meta"><?php echo $postMediaString; ?></span> <span class="meta"><?php if (isset($postCategories)) { echo ' > '.$postCategories; } ?></span></div>
                                         <div class="title">
-                                    	<a href="<?php echo get_permalink($postauthor->ID)?>"><h2 style="margin-bottom:0px;margin-top:0px;"><?php echo $postTitle;?></h2></a>
+                                    	<a href="<?php echo get_permalink($postauthor->ID)?>"><h2 style="margin-bottom:0px;margin-top:0px;"><?php echo $catname . $postTitle;?></h2></a>
                                         </div>
                                         
                                         <div class="postdescription"><?php echo $desc; ?></div>
