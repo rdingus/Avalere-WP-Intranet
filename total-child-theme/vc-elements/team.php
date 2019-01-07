@@ -42,6 +42,7 @@ class vcTeam extends WPBakeryShortCode
             'post_status' => 'publish',
 			// include newly loaded employees that do not have remove_from_the_list value set 
 			'meta_query'=>array(
+				array(
 					'relation'=>'OR',
 					array(
 						'key' => 'remove_from_the_list',
@@ -53,7 +54,9 @@ class vcTeam extends WPBakeryShortCode
 						'value' => '',
 						'compare' => 'NOT EXISTS',
 				      )
-				)		
+				)
+			)
+			
         );
         $object = new WP_Query($args);
 		
