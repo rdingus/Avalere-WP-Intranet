@@ -84,10 +84,9 @@ $post_id = get_the_ID();
             <?php if ( function_exists( 'ADDTOANY_SHARE_SAVE_KIT' ) ) { ADDTOANY_SHARE_SAVE_KIT(); } ?>
             <a class="post-icon-share" data-network="sharethis" id="post-icon-share" href="javascript:void(0);"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/post-icon-share.png" /></a> </li>
           <li><a class="post-icon-print" href="javascript:window.print()"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/post-icon-print.png" /></a></li>
-          <!-- <li><?php echo do_shortcode("[bws_pdfprint display='pdf']"); ?></li> -->
-          <!--<li>
+          <li>
             <?php if(function_exists('mpdf_pdfbutton_my')) mpdf_pdfbutton_my(true, '', ''); ?>
-          </li>-->
+          </li>
         </ul>
         <script>
                 jQuery(document).ready(function(){
