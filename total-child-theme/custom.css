@@ -69,7 +69,7 @@ h1.jump-header { min-width:270px!important; float: left; margin: 0px 0px 0px 0px
 .about-wrapper .sectionContentWrapper { padding-top: 20px !important; }
 } /* mobile end here*/
 
-@media (min-width:768px) and (max-width:2400px) {
+@media (min-width:768px) {
 	.main-logo { display:block; visibility: visible;}
 	.mobile-logo { display:none; visibility: hidden;}
 }
@@ -149,7 +149,7 @@ h1.jump-header {float: left; margin: 0px; color: #c2c8d0; line-height: 1em; min-
 #products-wrapper .product-box .productSummary { padding: 5px 15px 15px 15px; height: 136px;}
 #products-wrapper .product-box h4 { color: #00365a; font-size: 1.5em; font-weight: bold; z-index: 1; margin: 0 0 0 0 }
 #products-wrapper .product-box .intro { color: #00365a; font-size: 13px; z-index: 1; padding-right: 30px; line-height: 1.35em;}
-.services-wrapper { padding: 30px 30px 60px 30px }
+.services-wrapper { padding: 60px 30px 60px 30px }
 .service-box { margin-top: 30px; border-top: 1px solid #a9b7c1; border-bottom: 1px solid #a9b7c1 }
 .service-box .service-item { padding: 5px 5px 5px 0px }
 .service-box .service-item { border-bottom: 1px solid #a9b7c1 }
@@ -636,3 +636,25 @@ h4.related-post-title { /*overflow: hidden; text-overflow: ellipsis; display: -w
     height: 388px;
     width: 570px;
 }
+
+/* removal of gradient text effect - does not work in IE */
+.emd-effect {
+background: none;
+-webkit-background-clip: unset;
+-webkit-text-fill-color: unset;
+}
+
+.gradientEffect {
+color: #1b3856 !important;
+background: none;
+-webkit-background-clip: unset;
+-webkit-text-fill-color: unset;
+}
+
+.quoteTextWrapper {
+	color: #1b3856 !important;
+}
+
+/* hide addtoany share buttons */
+.entry-content .addtoany_share_save_container {display:none;}
+
