@@ -49,6 +49,7 @@ class vcServiceInsightsDynamic extends WPBakeryShortCode {
 		 "heading_text"=>"",
 		"posts"=>""		
 		) , $atts));
+		 wp_reset_query();
 		$postsarray = explode(",",$posts);		
 		$posts = NULL;		
 		$args   = array(
@@ -108,6 +109,7 @@ class vcServiceInsightsDynamic extends WPBakeryShortCode {
 			$output .= '</div>';	
 		$output .= '</div>';
 		}
+		 wp_reset_query();
 		return $output;
     } 
      

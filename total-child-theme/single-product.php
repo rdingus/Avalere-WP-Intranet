@@ -19,6 +19,8 @@ $employeesPhotoId = get_post_meta($employees[0]->ID, 'emd_employee_photo', true)
 $employeeJob = wp_get_post_terms($employees[0]->ID, 'jobtitles')[0]->name;
 $employeesPhotoURL = wp_get_attachment_url($employeesPhotoId);
 $learnMoreEmployeeContent = get_field('learn_more_content', $post->ID);
+
+/*
 $featuredContentIds = get_field("featured_content", $post->ID);
 $featuredContent = null;
 if ($featuredContentIds) {
@@ -46,7 +48,22 @@ if ($featuredContentIds) {
 		
 
         $featuredContent = new WP_Query($args);
-}
+}*/
+global $post;
+    $postsarray = array();    
+    $posts = NULL;    
+    $args   = array(
+            'post_type' => 'post',
+            'order' => 'DESC',
+            'orderby' => 'date',      
+            'post_status' => 'publish',
+      'posts_per_page' => '3',  
+      'meta_query'=>array(array('key'=>'related_products','value'=>sprintf(':"%s";', $post->ID),'compare'=>'LIKE'))           
+        );
+    
+wp_reset_query();
+$featuredContent = new WP_Query($args); 
+
 $titleStyle = '';
 if ($title_image = get_field("title_image", $post->ID)) {
     $titleStyle = 'style="background-image:url(' . $title_image . ')"';

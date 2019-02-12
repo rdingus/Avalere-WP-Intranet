@@ -12,8 +12,12 @@ $quoteImage = get_field("featured_team_member_image", $post->ID);
 $employeeID = get_field("featured_team_member", $post->ID);
 $employeeObject = $employeeID ? get_post($employeeID[0]) : NULL;
 if ($employeeObject) {
-    $quoteName = $employeeObject->post_title;
+    $quoteName = $employeeObject->post_title;	
+	$jobtitles = "";
+	if(!is_wp_error(wp_get_post_terms($employeeObject->ID, 'jobtitles'))){
+
     $jobtitles = wp_get_post_terms($employeeObject->ID, 'jobtitles')[0]->name;
+	}
 }
 $quoteText = get_field("featured_quote", $post->ID);
 $quoteHeading = get_field("subheading", $post->ID);
@@ -25,6 +29,8 @@ if ($productIds) {
 }
 $services = get_field('customized_solutions_list', $post->ID);
 $customizedSolutionsIntro = get_field('customized_solutions_intro', $post->ID);
+
+/*
 $featuredInsightsIds = get_field('featured_insights', $post->ID);
 
 $featuredContent = null;
@@ -54,7 +60,21 @@ if (isset($featuredInsightsIds)) {
 		
 
         $featuredContent = new WP_Query($args);
-}
+}*/
+global $post;
+		$postsarray = array();		
+		$posts = NULL;		
+		$args   = array(
+            'post_type' => 'post',
+            'order' => 'DESC',
+            'orderby' => 'date',			
+            'post_status' => 'publish',
+			'posts_per_page' => '3',  
+			'meta_query'=>array(array('key'=>'related_services','value'=>sprintf(':"%s";', $post->ID),'compare'=>'LIKE'))           
+        );
+		
+ wp_reset_query();
+        $featuredContent = new WP_Query($args); 
 ?>
 
 <div id="content-wrap" class="container clr">
@@ -214,12 +234,12 @@ if (isset($featuredInsightsIds)) {
                     $output .= '<div class="service-box">';
                     $output .= '<div class="vc_row wpb_row vc_row-fluid vc_row-o-equal-height vc_row-flex" style="margin-left:0px;margin-right:0px;">';
                     $output .= '<div class="vc_column_container vc_col-sm-6">';
-                    $output .= '<div class="vc_row wpb_row vc_row-fluid" style="margin-left:0px;margin-right:0px; width: 100%;">';
+                    $output .= '<div class="vc_row wpb_row vc_row-fluid" style="margin-left:0px;margin-right:0px;">';
                     $output .= $firstPartContent;
                     $output .= '</div>';
                     $output .= '</div>';
                     $output .= '<div class="vc_column_container vc_col-sm-6">';
-                    $output .= '<div class="vc_row wpb_row vc_row-fluid" style="margin-left:0px;margin-right:0px; width: 100%;">';
+                    $output .= '<div class="vc_row wpb_row vc_row-fluid" style="margin-left:0px;margin-right:0px;">';
                     $output .= $secondPartContent;
                     $output .= '</div>';
                     $output .= '</div>';

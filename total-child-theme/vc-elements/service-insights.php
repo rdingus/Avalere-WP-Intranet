@@ -62,7 +62,7 @@ class vcServiceInsights extends WPBakeryShortCode {
 		 "heading_text"=>"",
 		"posts"=>""		
 		) , $atts));
-
+ wp_reset_query();
 		$postsarray = $posts ? explode(",",$posts) : array();		
 		$posts = NULL;		
 		$args   = array(
@@ -166,6 +166,7 @@ class vcServiceInsights extends WPBakeryShortCode {
 			//$output .= '</div>';	
 		$output .= '</div>';
 		}
+		 wp_reset_query();
 		return $output;
     } 
      
