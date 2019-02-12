@@ -33,7 +33,10 @@ if (has_category('webinars')) {
                 <div class="wpb_wrapper">
                     <div class="webinar_access post-container">
                         <?php
-                         $todayData = date('YmdHis'); //2018-06-14 13:00:00
+                        // set timezone
+                        date_default_timezone_set ('America/New_York');
+                        //echo(date_default_timezone_get());
+                        $todayData = date('YmdHis'); //2018-06-14 13:00:00
                         if (isset($start_time) && $start_time != "" && isset($end_time) && $end_time) {
 
                             $A = strtotime($start_time);
