@@ -1,0 +1,430 @@
+/*
+Theme Name: Avalere
+Theme URI: http://sirmedia.in
+Description: This is a custom theme to fit requirement as requested.
+Version: 0.0.1
+Author: Vantiya & Lad Mohammad
+Author URI: http://sirmedia.in
+*/
+
+body {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	font-family: "helveticaneue",Arial,sans-serif;
+	color: black;
+}
+
+.pre {
+	background-color: grey;
+	font-family: "helveticaneue",Arial,sans-serif;
+	text-align: left;
+}
+
+#header {
+	margin: 0;
+	padding: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#content {
+	margin-left: auto;
+	margin-right: auto;
+	border: none;
+}
+
+#headerimg {
+	height: 100pt;
+}
+
+#headerimg .description {
+	font-size: 1.2em;
+	text-align: center;
+}
+
+.widecolumn {
+	/*padding: 10pt 0 20pt 0;*/
+}
+
+.widecolumn .entry p {
+	font-size: 1.05em;
+	}
+
+.widecolumn .entry {
+	line-height: 1.4em;
+	}
+
+.post {
+	padding: 0 25pt 20pt 25pt;
+	text-align: justify;
+}
+
+.widecolumn .post {
+	margin: 0;
+	}
+
+.widecolumn .postmetadata {
+	margin: 10pt 0;
+	padding: 4pt;
+	text-align: justify;
+}
+
+.widecolumn .smallattachment {
+	text-align: center;
+	float: left;
+	width: 128pt;
+	margin: 5pt 5pt 5pt 0pt;
+}
+
+.widecolumn .attachment {
+	text-align: center;
+	margin: 5pt 0pt;
+}
+
+#footer {
+	background-color: #e7e7e7;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	border: 0;
+}
+
+#footer p {
+	margin: 0;
+	border: 0;
+	padding: 3pt 0;
+	text-align: center;
+}
+/* End Structure */
+
+h1, h2, h3 {
+	font-family: "helveticaneue",Arial,sans-serif;
+	/*font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;*/
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 2.7em;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.4em;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+h1 {
+	text-decoration: none;
+	color: white;
+}
+
+#headerimg .description {
+	color: grey;
+}
+
+#content h1 {
+	color: #333;
+	font-size: 1.6em;
+}
+
+h2, h2 a, h3, h3 a {
+	color: #333;
+}
+
+h2, h2 a, h3, h3 a, cite {
+	text-decoration: none;
+	}
+
+
+code {
+	font: 1.1em "helveticaneue", Arial, sans-serif;
+}
+
+acronym, abbr, span.caps {
+	letter-spacing: .07em;
+}
+
+/* End Typography & Colors */
+
+
+/*	Begin Headers */
+h1 {
+	padding-top: 16pt;
+	margin: 0;
+	}
+
+h2 {
+	margin: 8pt 0 0 0;
+	padding: 0;
+	}
+
+h2.pagetitle {
+	text-align: center;
+}
+
+h3 {
+	padding: 0;
+	margin: 7pt 0 0;
+	}
+
+h3#comments {
+	padding: 0 25pt 20pt 25pt;
+	text-align: left;
+}
+
+/* End Headers */
+
+
+
+/* Begin Images */
+p img {
+	padding: 0;
+	max-width: 300pt;
+	}
+
+/*	Using 'class="alignright"' on an image will (who would've
+	thought?!) align the image to the right. And using 'class="centered',
+	will of course center the image. This is much better than using
+	align="center", being much more futureproof (and valid) */
+
+img.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+img.alignright {
+	padding: 2pt;
+	margin: 0 0 2pt 7pt;
+	display: inline;
+	}
+
+img.alignleft {
+	padding: 2pt;
+	margin: 0 7pt 2pt 0;
+	display: inline;
+	}
+
+.alignright {
+	float: right;
+	}
+
+.alignleft {
+	float: left
+	}
+/* End Images */
+
+/* Begin Comments*/
+
+.commentlist {
+	padding: 0 25pt 20pt 25pt;
+	text-align: justify;
+}
+
+.commentlist cite, .commentlist cite a {
+	font-weight: bold;
+	font-style: normal;
+	}
+
+.commentlist p {
+	font-weight: normal;
+	text-transform: none;
+}
+
+.commentmetadata {
+	font-weight: normal;
+}
+
+
+p.subtitle {
+	margin: 0;
+	padding: 1pt 0 6pt 0;
+}
+
+.postmetadata ul, .postmetadata li {
+	display: inline;
+	list-style-type: none;
+	list-style-image: none;
+}
+
+.alt {
+	background-color: #f8f8f8;
+	border-top: 0.1pt solid #ddd;
+	border-bottom: 0.1pt solid #ddd;
+
+}
+
+.commentlist .single_comment {
+	margin: 9pt 0 3pt;
+	padding: 4pt 5pt 3pt;
+	padding: 6pt;
+}
+
+.commentlist p {
+	margin: 5pt 4pt 6pt 0;
+	}
+
+.nocomments {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	}
+
+.commentmetadata {
+	margin: 0;
+	}
+
+#nocommentform {
+	font-weight: bold;
+	border-top: 0.1pt solid #444;
+	padding: 5pt;
+	text-align: center;
+}
+
+/* End Comments */
+
+
+/* Begin Various Tags & Classes */
+
+acronym, abbr {
+	border-bottom: 0.1pt dashed #999;
+	}
+
+blockquote {
+	margin: 15pt 30pt 0 10pt;
+	padding-left: 20pt;
+	border-left: 5pt solid #ddd;
+	}
+
+blockquote cite {
+	margin: 5pt 0 0;
+	display: block;
+	}
+
+.center {
+	text-align: center;
+	}
+
+hr {
+	display: none;
+	}
+
+a img {
+	border: none;
+	}
+
+a:link {
+	text-decoration: none;
+}
+
+a {
+	color: #000066;
+	text-decoration: none;
+}
+/* End Various Tags & Classes*/
+
+.post-header {display: inline-block;width: 100%;}
+.title_top {display: inline-block;width: 100%;}
+.post_meta.left_section {float: left;}
+.post-header .title_top .right_section {float: right;}
+.single-post .meta {margin: 0 0 20px;}
+.meta, .entry .meta {list-style: none;margin: 0 0 10px;font-size: 0.923em;color: #777;}
+.post-header .title_top .left_section ul li {font-size: 14px;font-weight: 400;line-height: 14px;border-right: 1px solid #a0acb6;margin: 0 20px 0 0;padding-right: 20px;color: #00a9f6;}
+.meta li, .entry .meta li {float: left;margin: 0 20px 5px 0;}
+.post-header .title_top .left_section ul li time {color: #1b3659;}
+.meta time, .entry .meta time {display: inline;}
+.post-header .title_top .left_section ul li a {color: #00a9f6;}
+.meta a, .entry .meta a {color: #777;text-decoration: none;}
+header.single-blog-header.clr {float: left;width: 80%;margin-top: -10px;}
+article, aside, details, figcaption, figure, footer, header, main, nav, section {display: block;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+.single-post-title.entry-title {font-size: 36px;color: #333333;font-weight: 600;line-height: 40px;margin: -10px 0 20px;}
+.theme-heading, .page-header-title, .heading-typography, .widget-title, .wpex-widget-recent-posts-title, .comment-reply-title, .vcex-heading, .entry-title, .sidebar-box .widget-title, .search-entry h2 {color: #00365a;}
+.single-post-title, .single-page-title {font-size: 1.846em;margin: 0 0 10px;font-weight: 400;}
+.entry-title {display: block;font-size: 1.077em;margin: 0 0 5px;font-weight: 600;color: #000;overflow-wrap: break-word;word-wrap: break-word;}
+.post-header .post_authors {display: inline-block;list-style: none;}
+.post_authors li {display: inline-block;}
+.post_authors li a {color: #0081cc;text-decoration: none;}
+*, *:before, *:after {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.authors-details img {height: 60px;width: 60px;border-radius: 50%;object-fit: cover;float: left;border: 0;-ms-interpolation-mode: bicubic;max-width: 100%;height: auto;}
+.post-header .emp_name {float: left;margin: 20px;border-right: padding-right: 20px;color: #3fa9f5;font-weight: 600;line-height: 14px;}
+.vc_row, .wpb_row, .wpb_column, .vc_column-inner, .wpb_content_element, .vcex-module {border-color: transparent;border-style: solid;}
+.wpb_row, .wpb_content_element, ul.wpb_thumbnails-fluid>li, .last_toggle_el_margin, .wpb_button {margin-bottom: 0;}
+.vc_row {position: relative;}
+.vc_row {margin-left: -15px;margin-right: -15px;}
+.vc_row, .wpb_row, .wpb_column, .vc_column-inner, .wpb_content_element, .vcex-module {border-color: transparent;border-style: solid;}
+.vc_column_container {padding-left: 0;padding-right: 0;}
+@media (min-width: 768px)
+.vc_col-sm-12 {width: 100%;}
+@media (min-width: 768px).vc_col-sm-1, .vc_col-sm-10, .vc_col-sm-11, .vc_col-sm-12, .vc_col-sm-2, .vc_col-sm-3, .vc_col-sm-4, .vc_col-sm-5, .vc_col-sm-6, .vc_col-sm-7, .vc_col-sm-8, .vc_col-sm-9 {    float: left;
+}
+.vc_col-lg-1, .vc_col-lg-10, .vc_col-lg-11, .vc_col-lg-12, .vc_col-lg-2, .vc_col-lg-3, .vc_col-lg-4, .vc_col-lg-5, .vc_col-lg-6, .vc_col-lg-7, .vc_col-lg-8, .vc_col-lg-9, .vc_col-md-1, .vc_col-md-10, .vc_col-md-11, .vc_col-md-12, .vc_col-md-2, .vc_col-md-3, .vc_col-md-4, .vc_col-md-5, .vc_col-md-6, .vc_col-md-7, .vc_col-md-8, .vc_col-md-9, .vc_col-sm-1, .vc_col-sm-10, .vc_col-sm-11, .vc_col-sm-12, .vc_col-sm-2, .vc_col-sm-3, .vc_col-sm-4, .vc_col-sm-5, .vc_col-sm-6, .vc_col-sm-7, .vc_col-sm-8, .vc_col-sm-9, .vc_col-xs-1, .vc_col-xs-10, .vc_col-xs-11, .vc_col-xs-12, .vc_col-xs-2, .vc_col-xs-3, .vc_col-xs-4, .vc_col-xs-5, .vc_col-xs-6, .vc_col-xs-7, .vc_col-xs-8, .vc_col-xs-9 {
+    position: relative;min-height: 1px;padding-left: 15px;padding-right: 15px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.vc_col-xs-12, .vc_column_container {width: 100%;}
+.vc_row, .wpb_row, .wpb_column, .vc_column-inner, .wpb_content_element, .vcex-module {border-color: transparent;border-style: solid;}
+.vc_column_container {padding-left: 0;padding-right: 0;}
+.vc_column_container>.vc_column-inner {box-sizing: border-box;padding-left: 30px;padding-right: 30px;width: 100%;}
+.vc_column_container>.vc_column-inner {box-sizing: border-box;padding-left: 15px;padding-right: 15px;width: 100%;}
+.vc_column-inner {/*margin-bottom: 40px;*/}
+.vc_row, .wpb_row, .wpb_column, .vc_column-inner, .wpb_content_element, .vcex-module {border-color: transparent;border-style: solid;}
+.post-container {margin: 0 auto;width: 720px;}
+.post-container ul.pdf_chart {margin: 24px 0 15px !important;}
+.vc_row, .wpb_row, .wpb_column, .vc_column-inner, .wpb_content_element, .vcex-module {border-color: transparent;border-style: solid;}
+.wpb_row, .wpb_content_element, ul.wpb_thumbnails-fluid>li, .last_toggle_el_margin, .wpb_button {margin-bottom: 0;}
+.vc_sep_pos_align_center {margin-left: auto;margin-right: auto;}
+.vc_sep_width_100, .wpb_single_image img.vc_img-placeholder {width: 100%;}
+.vc_separator {display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;-webkit-flex-wrap: nowrap;-ms-flex-wrap: nowrap;flex-wrap: nowrap;-webkit-box-align: center;-webkit-align-items: center;-ms-flex-align: center;align-items: center;}
+.wpb_button, .wpb_content_element, ul.wpb_thumbnails-fluid>li {margin-bottom: 35px;}
+.vc_separator.vc_separator_no_text:not(.vc_sep_shadow) .vc_sep_holder_l {width: 100%;}
+.vc_separator .vc_sep_holder {height: 1px;position: relative;-webkit-box-flex: 1;-webkit-flex: 1 1 auto;-ms-flex: 1 1 auto;flex: 1 1 auto;min-width: 10%;}
+.vc_separator.vc_sep_border_width_2 .vc_sep_holder .vc_sep_line {border-top-width: 2px;}
+.vc_separator.vc_sep_color_grey .vc_sep_line {border-color: #EBEBEB;}
+.vc_separator .vc_sep_holder .vc_sep_line {height: 1px;border-top: 1px solid #EBEBEB;display: block;position: relative;top: 1px;width: 100%;}
+.single-post span.vc_sep_line {border-top-width: 1px !important;border-color: #8296a1 !important;}
+.vc_separator.vc_separator_no_text:not(.vc_sep_shadow) .vc_sep_holder_r {display: none;}
+.vc_separator .vc_sep_holder {height: 1px;position: relative;-webkit-box-flex: 1;-webkit-flex: 1 1 auto;-ms-flex: 1 1 auto;flex: 1 1 auto;min-width: 10%;}
+.post_summary {padding: 22px 0;background: #fff;font-size: 24px;font-weight: normal;color: #1296f3;}
+.post_summary h2 {color: #1b3659;margin: 0 0 15px;line-height: 24px;font-size: 24px;font-weight: 500;}
+.single-blog-content {
+    margin-bottom: 40px;
+    background: #fff;
+}
+.single-blog-content h1, 
+.single-blog-content h2, 
+.single-blog-content h3, 
+.single-blog-content h4, 
+.single-blog-content p, 
+.single-blog-content ul, 
+.single-blog-content ol {
+    margin-bottom: 40px;
+    background: #fff;
+    margin: 0 auto;
+    width: 770px;
+    padding-bottom: 30px;
+}
+.single-blog-content p {
+    color: #1b3659;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+.single-blog-content h2 {
+    font-weight: bold;
+    font-size: 18px;
+    color: #1b3659;
+}
+.entry h3 {
+    color: #00365a;
+}
+.single-blog-content h3 {
+    font-weight: bold;
+    font-size: 17px;
+    color: #1b3659;
+}  
+  
