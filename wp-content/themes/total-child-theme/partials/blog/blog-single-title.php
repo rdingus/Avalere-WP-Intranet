@@ -78,7 +78,7 @@ $post_id = get_the_ID();
         </div>
       </div>
       <div class="wpb_column vc_column_container vc_col-sm-2">
-      	<div class="right_section">
+        <div class="right_section">
         <ul>
           <li>
             <?php if ( function_exists( 'ADDTOANY_SHARE_SAVE_KIT' ) ) { ADDTOANY_SHARE_SAVE_KIT(); } ?>
@@ -230,10 +230,10 @@ $white_paper_pdf = get_field('white_paper_pdf', $post_id);
           <?php
             if (has_category('webinars')) {
 
-                $start_date = get_field('start_time',$postId);
-                $end_date = get_field('end_time',$postId);
+                $start_date = get_field('start_time',$post_id);
+                $end_date = get_field('end_time',$post_id);
                 $current_date = date('YmdHis'); //2018-06-14 13:00:00
-                
+
                 if (isset($start_date) && $start_date != "" && isset($end_date) && $end_date) {
                   
                   $start_time = strtotime($start_date);
@@ -245,7 +245,7 @@ $white_paper_pdf = get_field('white_paper_pdf', $post_id);
                     echo("<h2>Webinar Details</h2>");
                     echo(the_title() . "<br />");
                     echo(date("F j, Y", $start_time) . "<br />");
-                    echo(date("g", $start_time) ."&ndash;". date("g A", $end_time) ." ET");
+                    echo(date("g:i", $start_time) ."&ndash;". date("g:i A", $end_time) ." ET");
                     echo("<h2>&nbsp;</h2>");
                   }
 
