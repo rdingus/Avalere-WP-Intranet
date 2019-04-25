@@ -1,4 +1,5 @@
 <?php
+ 
 /**
  * Child theme functions
  *
@@ -117,6 +118,7 @@ add_filter('wpex_has_overlay_header', function( $return ) {
     if ( $product_type == 'product' || is_tax() || is_404() || is_search() || is_category() || is_single() || is_page() && !is_front_page()) {
         $return = true;
     }
+	
     return $return;
 });
 // Post page and category page header image
@@ -154,14 +156,6 @@ add_filter('wpex_page_header_background_image', function( $image ) {
             $image = get_the_guid($postIdArr[0]);
         }
     }
-    /*elseif ( is_search() ) {
-        // $image = get_field('page_header', 10436);
-        echo "Hello Hi Search functions ";
-        $postIdArr = get_term_meta(3, 'category_header_image');
-        if (isset($postIdArr[0]) && $postIdArr[0] != "") {
-            $image = get_the_guid($postIdArr[0]);
-        }
-    } */    
     return $image;
 });
 
@@ -294,27 +288,6 @@ function my_search_placeholder() {
 }
 
 add_filter('wpex_search_placeholder_text', 'my_search_placeholder');
-// for adding js/jq code into footer
-/*add_action('wp_footer', function() {
-    ?>
-    <script>
-        (function ($) {
-            'use strict';
-            jQuery(document).ready(function () {
-                //append search to header
-                jQuery('.search-toggle-li').empty();
-                var search_form = '<div id="top-search-bar"><form method="get" class="searchform" action="<?php echo site_url(); ?>"><div>';
-                search_form += '<button type="submit" class="searchform-submit">';
-                search_form += '<span class="fa fa-search" aria-hidden="true"></span><span class="screen-reader-text">Submit</span></button>';
-                search_form += '<input class="field" name="s" placeholder="" type="search"></div></form></div>';
-                jQuery('#site-navigation-wrap').addClass('mycustom_search');
-                jQuery('#site-navigation').before(search_form);
-                jQuery('#searchform-dropdown').hide();
-            });
-        })(jQuery);
-    </script>
-    <?php
-});*/
 
 // Display Panelists @author S@if
 function displayPanelists() {
@@ -346,17 +319,8 @@ function displayPanelists() {
                                     <?php
 									if(!empty($totalEmployeeIdArr)){
                                     foreach ($totalEmployeeIdArr as $employee_id) {
-                                        /* $args = array(
-                                          'include' => $employee_id,
-                                          'posts_per_page' => - 1,
-                                          'post_type' => 'emd_employee',
-                                          'post_status' => 'publish',
-                                          'suppress_filters' => true
-                                          );
-                                          $posts_array = get_posts($args); */
                                         $employeeData = get_post($employee_id, ARRAY_A);
                                         if (!empty($employeeData)) {
-                                            //foreach ($posts_array as $key => $value) {
                                             $employee_url = get_the_permalink($employee_id);
                                             $designation = get_the_terms($employee_id, 'jobtitles');
                                             $email = get_post_meta($employee_id, $key = 'emd_employee_email');
@@ -379,8 +343,10 @@ function displayPanelists() {
                                                         <div class="author_type"><?php echo ($employee_id == $post_moderator) ? "Moderator" : "Speaker"; ?></div>
                                                         <div class="author_name"> <span class="employee_name"><a href="<?php echo $employee_url; ?>"><?php echo trim($employeeData['post_title']); ?></a></span> <span class="staff_post_department">
                                                                 <?php
-                                                                echo isset($designation[0]->name) ? ', ' . $designation[0]->name : "";
-                                                                echo isset($department[0]->name) ? ', ' . $department[0]->name : "";
+                                                                if( !is_wp_error( $designation ) ) {
+                                                                    echo isset($designation[0]->name) ? ', ' . $designation[0]->name : "";
+                                                                    echo isset($department[0]->name) ? ', ' . $department[0]->name : "";
+                                                                }
                                                                 ?>
                                                             </span> </div>
                                                         
@@ -407,7 +373,6 @@ function displayPanelists() {
                                                 </div>
                                             </div>
                                             <?php
-                                            //}
                                         }
                                     }
 									}
@@ -532,23 +497,6 @@ function append_to_category() {
                             ?>
                             <div class="related-post-content clr">
                                 <ul class="meta">
-                                    <?php
-                                    /* $umbrellaCat = wp_get_object_terms($featured_post_id, 'content-categories');
-                                      if (!empty($umbrellaCat)) {
-                                      ?>
-                                      <li class="meta-category">
-                                      <?php
-                                      foreach ($umbrellaCat as $term) {
-                                      if ($term->parent == 0)
-                                      continue; // display only child terms
-                                      echo '<a href="' . get_term_link($term->slug, 'content-categories') . '">' . $term->name . '</a> ';
-                                      }
-                                      ?>
-                                      </li>
-                                      <?php
-                                      } */
-
-                                    ?>
                                      <?php if(wp_get_post_terms($post_id,'category')){?>
         <li class="umbrella-category">
           <?php wpex_list_post_terms_custom('category'); ?>
@@ -556,7 +504,7 @@ function append_to_category() {
         <?php }?>
                                     <?php if(wp_get_post_terms($post_id,'content-categories')){?>
                                     <li class="umbrella-category">
-                                      <?php wpex_list_post_terms_custom('content-categories'); ?>
+                                      <?php wpex_list_post_terms_custom('content-categories');?>
                                     </li>
                                     <?php }?>
                                     
@@ -580,7 +528,6 @@ function append_to_category() {
                                         ?>
                                         <ul class="post_authors">
                                             <?php
-                                            //foreach ($posts_array as $key => $value) {
                                             $value = $posts_array[0];
                                             $employee_id = $value->ID;
                                             $employee_url = get_permalink($employee_id);
@@ -610,8 +557,8 @@ function append_to_category() {
             </div>
             <?php
         }
-//if (in_array("category", $url_explode)) { // to category page       
         ?>
+        
         <div class = "vc_row wpb_row vc_row-fluid category-searchform">
             <div class = "wpb_column vc_column_container vc_col-sm-12">
                 <div class = "vc_column-inner vc_custom_1497499115628">
@@ -622,7 +569,6 @@ function append_to_category() {
             </div>
         </div>
         <?php
-//}
     }
 }
 
@@ -648,9 +594,9 @@ function vc_before_init_actions() {
     require_once( get_stylesheet_directory() . '/vc-elements/team.php' );
     require_once( get_stylesheet_directory() . '/vc-elements/services_links.php' );
     require_once( get_stylesheet_directory() . '/vc-elements/single_connect.php' );
-    //require_once( get_stylesheet_directory() . '/vc-elements/category_posts.php' );
     require_once( get_stylesheet_directory() . '/vc-elements/featured_posts_services.php' );
     require_once( get_stylesheet_directory() . '/vc-elements/audience-pages-posts.php' );
+	
 
 }
 
@@ -724,7 +670,7 @@ function custom_title( $title ){
 
     if (is_singular('emd_employee')) {
 		global $post;
-		$memberTitle       = $post->post_title;
+		$memberTitle = $post->post_title;
 		
 		$memberDesignation = wp_get_post_terms($post->ID, 'jobtitles');
 		$memberDesignationList = "";
@@ -738,3 +684,669 @@ function custom_title( $title ){
     }   
     return $title;
 }
+
+add_shortcode('myjsonld', 'myjson');
+
+function myjson()
+	{
+	$options = array(
+		'default_image' => site_url().'/wp-content/uploads/2019/04/Blue_Loom_Crop.jpg' ,
+		'content_image' => 'on',
+		'name' => wpex_header_logo_title() ,
+		'logo' => wpex_header_logo_img(),
+		'logo-width'=>'433',
+		'logo-height'=>'173'
+	);
+	global $post;
+	$args = array();
+	$excerpt = get_field('post_summary', $post);
+	$content = get_field('post_summary', $post);
+	
+	$postAuthorsIds = get_field('post_authors', get_the_ID());
+$authors = "";
+if($postAuthorsIds){
+    foreach($postAuthorsIds as $author){
+        $authorDetail = get_post($author);
+        $authorsList[] = array(
+				"@type" => "Person",
+				"name" => $authorDetail->post_title
+			) ;
+    }    
+    $authors = $authorsList;
+    
+}
+	
+	
+	$arr_terms = wp_get_post_terms(get_the_ID() , 'category', array(
+		"fields" => "ids"
+	));
+	$tyle_entity = "";
+	if (in_array(3, $arr_terms))
+		{
+		$tyle_entity = 'Article';
+		$tyle_main_entity = "Webpage";
+		$args = array(
+			"@context" => "https://schema.org/",
+			"@type" => $tyle_entity,
+			"mainEntityOfPage" => array(
+				"@type" => $tyle_main_entity,
+				"@id" => get_permalink($post->ID)
+			) ,
+			"headline" => mb_substr(esc_html($post->post_title) , 0, 110) ,
+			"datePublished" => get_the_time(DATE_ISO8601, $post->ID) ,
+			"dateModified" => get_post_modified_time(DATE_ISO8601, __return_false() , $post->ID) ,
+			
+			"author" => $authors ,
+			"description" => $content
+		);
+		if (has_post_thumbnail($post->ID))
+			{
+			$images = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID) , 'full');
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => $images[0],
+					"width" => $images[1],
+					"height" => $images[2]
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+		elseif (isset($options['default_image']))
+			{
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => esc_html($options['default_image']) ,
+					"width" => '250',
+					"height" => '120'
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+
+		if (isset($options['name']))
+			{
+			$publisher_args = array(
+				"publisher" => array(
+					"@type" => "Organization",
+					"name" => esc_html($options['name']) ,
+				)
+			);
+			$options['logo'] = isset($options['logo']) ? esc_html($options['logo']) : "";
+			if (!empty($options['logo']))
+				{
+				$publisher_args['publisher']['logo'] = array(
+					"@type" => "ImageObject",
+					"url" => $options['logo'],
+					"width" => isset($options['logo-width']) ? (int)$options['logo-width'] : 0,
+					"height" => isset($options['logo-height']) ? (int)$options['logo-height'] : 0
+				);
+				}
+
+			$args = array_merge($args, $publisher_args);
+			}
+		}
+	elseif (in_array(5, $arr_terms))
+		{
+		$tyle_entity = 'Article';
+		$tyle_main_entity = "Webpage";
+		$args = array(
+			"@context" => "https://schema.org/",
+			"@type" => $tyle_entity,
+			"mainEntityOfPage" => array(
+				"@type" => $tyle_main_entity,
+				"@id" => get_permalink($post->ID)
+			) ,
+			"headline" => mb_substr(esc_html($post->post_title) , 0, 110) ,
+			"datePublished" => get_the_time(DATE_ISO8601, $post->ID) ,
+			"dateModified" => get_post_modified_time(DATE_ISO8601, __return_false() , $post->ID) ,
+			"author" =>$authors,
+			"description" => $content
+		);
+		if (has_post_thumbnail($post->ID))
+			{
+			$images = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID) , 'full');
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => $images[0],
+					"width" => $images[1],
+					"height" => $images[2]
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+		elseif (isset($options['default_image']))
+			{
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => esc_html($options['default_image']) ,
+					"width" => '473',
+					"height" => '173'
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+
+		if (isset($options['name']))
+			{
+			$publisher_args = array(
+				"publisher" => array(
+					"@type" => "Organization",
+					"name" => esc_html($options['name']) ,
+				)
+			);
+			$options['logo'] = isset($options['logo']) ? esc_html($options['logo']) : "";
+			if (!empty($options['logo']))
+				{
+				$publisher_args['publisher']['logo'] = array(
+					"@type" => "ImageObject",
+					"url" => $options['logo'],
+					"width" => isset($options['logo-width']) ? (int)$options['logo-width'] : 0,
+					"height" => isset($options['logo-height']) ? (int)$options['logo-height'] : 0
+				);
+				}
+
+			$args = array_merge($args, $publisher_args);
+			}
+
+		$sound_cloud_url = get_post_meta(get_the_ID() , $key = 'sound_cloud_url');
+		$args['audio'] = array(
+			'@type' => 'AudioObject',
+			"name" => get_the_title() ,
+			"description" => $content,
+			"embedurl" => $sound_cloud_url,
+			'uploadDate' => get_the_time(DATE_ISO8601, $post->ID) ,
+		);
+		}
+	elseif (in_array(7, $arr_terms))
+		{
+		$tyle_entity = 'NewsArticle';
+		$tyle_main_entity = "Webpage";
+		$args = array(
+			"@context" => "https://schema.org/",
+			"@type" => $tyle_entity,
+			"mainEntityOfPage" => array(
+				"@type" => $tyle_main_entity,
+				"@id" => get_permalink($post->ID)
+			) ,
+			"headline" => mb_substr(esc_html($post->post_title) , 0, 110) ,
+			"datePublished" => get_the_time(DATE_ISO8601, $post->ID) ,
+			"dateModified" => get_post_modified_time(DATE_ISO8601, __return_false() , $post->ID) ,
+			"author" => $authors,
+			"description" => $content,
+			"genre"=>'http://cv.iptc.org/newscodes/genre/Press_Release'
+		);
+		if (has_post_thumbnail($post->ID))
+			{
+			$images = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID) , 'full');
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => $images[0],
+					"width" => $images[1],
+					"height" => $images[2]
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+		elseif (isset($options['default_image']))
+			{
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => esc_html($options['default_image']) ,
+					"width" => '473',
+					"height" => '173'
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+
+		if (isset($options['name']))
+			{
+			$publisher_args = array(
+				"publisher" => array(
+					"@type" => "Organization",
+					"name" => esc_html($options['name']) ,
+				)
+			);
+			$options['logo'] = isset($options['logo']) ? esc_html($options['logo']) : "";
+			if (!empty($options['logo']))
+				{
+				$publisher_args['publisher']['logo'] = array(
+					"@type" => "ImageObject",
+					"url" => $options['logo'],
+					"width" => isset($options['logo-width']) ? (int)$options['logo-width'] : 0,
+					"height" => isset($options['logo-height']) ? (int)$options['logo-height'] : 0
+				);
+				}
+
+			$args = array_merge($args, $publisher_args);
+			}
+		}
+	elseif (in_array(4, $arr_terms))
+		{
+		$tyle_entity = 'Article';
+		$tyle_main_entity = "Webpage";
+		$args = array(
+			"@context" => "https://schema.org/",
+			"@type" => $tyle_entity,
+			"mainEntityOfPage" => array(
+				"@type" => $tyle_main_entity,
+				"@id" => get_permalink($post->ID)
+			) ,
+			"headline" => mb_substr(esc_html($post->post_title) , 0, 110) ,
+			"datePublished" => get_the_time(DATE_ISO8601, $post->ID) ,
+			"dateModified" => get_post_modified_time(DATE_ISO8601, __return_false() , $post->ID) ,
+			"author" => $authors,
+			"description" => $content
+		);
+		if (has_post_thumbnail($post->ID))
+			{
+			$images = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID) , 'full');
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => $images[0],
+					"width" => $images[1],
+					"height" => $images[2]
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+		elseif (isset($options['default_image']))
+			{
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => esc_html($options['default_image']) ,
+					"width" => '473',
+					"height" => '173'
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+
+		if (isset($options['name']))
+			{
+			$publisher_args = array(
+				"publisher" => array(
+					"@type" => "Organization",
+					"name" => esc_html($options['name']) ,
+				)
+			);
+			$options['logo'] = isset($options['logo']) ? esc_html($options['logo']) : "";
+			if (!empty($options['logo']))
+				{
+				$publisher_args['publisher']['logo'] = array(
+					"@type" => "ImageObject",
+					"url" => $options['logo'],
+					"width" => isset($options['logo-width']) ? (int)$options['logo-width'] : 0,
+					"height" => isset($options['logo-height']) ? (int)$options['logo-height'] : 0
+				);
+				}
+
+			$args = array_merge($args, $publisher_args);
+			}
+
+		$video_embed_url = get_post_meta(get_the_ID() , $key = 'video_embed_url');        $video_thumbnail = get_post_meta(get_the_ID() , $key = 'video_thumbnail');		
+		$args['video'] = array(
+			'@type' => 'VideoObject',
+			"name" => get_the_title() ,
+			"description" => $content,
+			"embedurl" => $video_embed_url,
+			"thumbnailurl" => $video_thumbnail,
+			'uploadDate' => get_the_time(DATE_ISO8601, $post->ID) ,
+			
+		);
+		}
+	elseif (in_array(6, $arr_terms))
+		{
+		$tyle_entity = 'Event';
+		$tyle_main_entity = "Webpage";
+		$args = array(
+			"@context" => "https://schema.org/",
+			"@type" => $tyle_entity,
+			"mainEntityOfPage" => array(
+				"@type" => $tyle_main_entity,
+				"@id" => get_permalink($post->ID)
+			) ,
+			"name" => mb_substr(esc_html($post->post_title) , 0, 110) ,
+			
+			"performer" => $authors,
+			"Organizer" =>array(
+					"@type" => "Organization",
+					"name" => esc_html($options['name']) ,
+				),
+			"description" => $content,
+			"startDate"=>date(DATE_ISO8601,strtotime(get_post_meta(get_the_ID(),$key='start_time')[0])),
+			"endDate"=>date(DATE_ISO8601,strtotime(get_post_meta(get_the_ID(),$key='end_time')[0])),
+			"location"=>array("@type"=>"place",
+			"name"=>'Avalere Health' ,
+			"address"=>"1350 Connecticut Ave NW Suite 900 Washington, DC 20036"
+			)
+			
+		);
+		if (has_post_thumbnail($post->ID))
+			{
+			$images = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID) , 'full');
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => $images[0],
+					"width" => $images[1],
+					"height" => $images[2]
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+		elseif (isset($options['default_image']))
+			{
+			$images_args = array(
+				"image" => array(
+					"@type" => "ImageObject",
+					"url" => esc_html($options['default_image']) ,
+					"width" => '433',
+					"height" => '173'
+				)
+			);
+			$args = array_merge($args, $images_args);
+			}
+
+		if (isset($options['name']))
+			{
+			$publisher_args = array(
+				"organizer" => array(
+					"@type" => "Organization",
+					"name" => esc_html($options['name']) ,
+				)
+			);
+			$options['logo'] = isset($options['logo']) ? esc_html($options['logo']) : "";
+			if (!empty($options['logo']))
+				{
+				$publisher_args['organizer']['logo'] = array(
+					"@type" => "ImageObject",
+					"url" => $options['logo'],
+					"width" => isset($options['logo-width']) ? (int)$options['logo-width'] : 0,
+					"height" => isset($options['logo-height']) ? (int)$options['logo-height'] : 0
+				);
+				}
+
+			$args = array_merge($args, $publisher_args);
+			
+			$recording_url = get_post_meta(get_the_ID() , $key = 'recording_url');			$webinar_schema_embed_url = get_post_meta(get_the_ID() , $key = 'webinar_schema_embed_url');
+			if(isset($recording_url))
+			{
+				$images_args=array();
+				
+				if (has_post_thumbnail($post->ID))
+			{
+			$images = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID) , 'full');
+			$images_args = array(				
+					"@type" => "ImageObject",
+					"url" => $images[0],
+					"width" => $images[1],
+					"height" => $images[2]
+				);
+			
+			}
+		elseif (isset($options['default_image']))
+			{
+			$images_args =  array(
+					"@type" => "ImageObject",
+					"url" => esc_html($options['default_image']) ,
+					"width" => '433',
+					"height" => '173'
+				);
+			
+			}
+				
+		$args['recordedIn'] = array(
+			'@type' => 'CreativeWork',
+			"name" => get_the_title() ,
+			"description" => $content,
+			"video" => array(			             '@type' => 'VideoObject',			  
+             "name" => get_the_title() ,
+			"description" => $content,			
+			"embedurl"=>$webinar_schema_embed_url,
+			"thumbnailurl" => $options['logo'],
+			'uploadDate' => get_the_time(DATE_ISO8601, $post->ID),
+			
+			),
+			'recordedAt'=>array(
+			'@type'=>'Event',
+			"name" => mb_substr(esc_html($post->post_title) , 0, 110) ,
+			
+			"performer" => $authors,
+			"Organizer" =>array(
+					"@type" => "Organization",
+					"name" => esc_html($options['name']) ,
+				),
+			"description" => $content,
+			"startDate"=>date(DATE_ISO8601,strtotime(get_post_meta(get_the_ID(),$key='start_time')[0])),
+			"endDate"=>date(DATE_ISO8601,strtotime(get_post_meta(get_the_ID(),$key='end_time')[0])),
+			"location"=>array("@type"=>"place",
+			"name"=>'Avalere Health' ,
+			"address"=>"1350 Connecticut Ave NW Suite 900 Washington, DC 20036"
+			),
+			'image'=>$images_args
+			
+			),
+			
+		);
+		
+		
+			}
+			
+
+			}
+		} 
+		else{
+		  if(is_singular('emd_employee'))
+		  {
+			  
+			  
+			  $tyle_entity = 'Person';
+		$tyle_main_entity = "Webpage";
+		global $post;
+        $knowsabt = $post->post_content;
+		
+		$placeholder = get_stylesheet_directory_uri() . '/images/single-member-image-placeholder.jpg';
+$image = wp_get_attachment_image_src(get_post_meta($post->ID, 'emd_employee_photo', true), "full");
+$img_profile=array();
+if ($image == "") {
+    $image = get_stylesheet_directory_uri() . '/images/single-member-no-image.jpg';
+	$img_profile=array(
+					"@type" => "ImageObject",
+					"url" => $image ,
+					"width" => '600',
+					"height" => '400'
+				);
+}
+else{
+	$img_profile=array(
+					"@type" => "ImageObject",
+					"url" => $image[0],
+					"width" => $image[1],
+					"height" => $image[2]
+				);
+}
+
+
+
+		$args = array(
+			"@context" => "https://schema.org/",
+			"@type" => $tyle_entity,
+			"mainEntityOfPage" => array(
+				"@type" => $tyle_main_entity,
+				"@id" => get_permalink($post->ID)
+			) ,
+			"name"=>mb_substr(esc_html($post->post_title) , 0, 110) ,
+			"knowsAbout"=>$knowsabt,
+			"image"=>$img_profile,
+			"worksFor" => array(
+					"@type" => "Organization",
+					"name" =>esc_html($options['name']) 
+				) ,
+		"jobTitle"=>wp_get_object_terms(get_the_ID() , 'jobtitles',array('fields'=>'names'))
+			
+		);
+		  }
+		  elseif(is_page(10048))
+		  {
+			   $tyle_entity = 'Organization';
+		$tyle_main_entity = "Webpage";
+		
+		$query = new WP_Query(array(
+    'post_type' => 'emd_employee',
+    'posts_per_page'=>-1
+));
+$persons=array();
+
+
+
+wp_reset_postdata();  // Team page schema codes here
+
+while ($query->have_posts()) {
+	$query->the_post();
+	$excerpt = get_field('post_summary', get_the_ID());
+	global $post;
+        $knowsabt = $post->post_content;
+	
+	$placeholder = get_stylesheet_directory_uri() . '/images/single-member-image-placeholder.jpg';
+$image = wp_get_attachment_image_src(get_post_meta($post->ID, 'emd_employee_photo', true), "full");
+$img_profile=array();
+if ($image == "") {
+    $image = get_stylesheet_directory_uri() . '/images/single-member-no-image.jpg';
+	$img_profile=array(
+					"@type" => "ImageObject",
+					"url" => $image ,
+					"width" => '600',
+					"height" => '400'
+				);
+}
+else{
+	$img_profile=array(
+					"@type" => "ImageObject",
+					"url" => $image[0] ,
+					"width" => $image[1],
+					"height" => $image[2]
+				);
+}
+	
+	
+	$persons[]=array(
+	        "@type"=>"Person",
+			"name"=>mb_substr(esc_html(get_the_title()) , 0, 110) ,
+			"image"=>$img_profile,
+			"worksFor" => array(
+					"@type" => "Organization",
+					"name" =>esc_html($options['name']) 
+				) ,
+		"jobTitle"=>wp_get_object_terms(get_the_ID() , 'jobtitles',array('fields'=>'names'))
+		);
+}
+wp_reset_postdata();
+		
+		 
+			  $args = array(
+			"@context" => "https://schema.org/",
+			"@type" => $tyle_entity,
+			"mainEntityOfPage" => array(
+				"@type" => $tyle_main_entity,
+				"@id" => get_permalink($post->ID)
+			) ,
+			"employee" =>$persons,
+			);
+		
+		  }
+		   
+		}
+	
+	return set_schema_json_my($args);
+	}
+
+function set_schema_json_my($args, $error = false)
+	{
+	if ($error)
+		{
+		/** Error Display */
+		if (isset($args["@type"]))
+			{
+			foreach($args["message"] as $message)
+				{
+				echo "<!-- Schema.org ", $args["@type"], " : ", $message, " -->", PHP_EOL;
+				}
+			}
+		}
+	  else
+		{
+		if (is_array($args))
+			{
+			$output = '';
+			$output.= '<script type="application/ld+json">' . PHP_EOL;
+			$output.= json_encode($args, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL;
+			$output.= '</script>' . PHP_EOL;
+			}
+
+		return $output;
+		}
+	}
+
+
+// Featured images for post
+function autoset_featured() {
+// Live site IDs:
+    /*
+$media_array = array(
+'15627',
+'15626',
+'15625',
+'15624',
+'15623',
+'15622',
+'15621',
+'15620',
+'15619',
+'15618',
+'15617',
+'15616',
+); 
+*/
+// webdev IDs:
+$media_array = array(
+'17192',
+'17191',
+'17190',
+'17189',
+'17188',
+'17187',
+'17186',
+'17185',
+'17184',
+'17183',
+'17182',
+);
+$media = $media_array[array_rand($media_array)];
+      global $post;
+      $already_has_thumb = has_post_thumbnail($post->ID);
+          if (!$already_has_thumb)  {
+          $attached_image = get_children( "post_parent=$post->ID&post_type=attachment&post_mime_type=image&numberposts=1" );
+                      if ($attached_image) {
+                            foreach ($attached_image as $attachment_id => $attachment) {
+                            set_post_thumbnail($post->ID, $attachment_id);
+                            }
+                       } else {
+                            set_post_thumbnail($post->ID, $media);
+                       }
+                    }
+  }  //end function
+add_action('the_post', 'autoset_featured');
+//add_action('save_post', 'autoset_featured');
+//add_action('draft_to_publish', 'autoset_featured');
+//add_action('new_to_publish', 'autoset_featured');
+//add_action('pending_to_publish', 'autoset_featured');
+//add_action('future_to_publish', 'autoset_featured');
