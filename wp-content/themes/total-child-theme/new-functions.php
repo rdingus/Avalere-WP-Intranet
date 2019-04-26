@@ -16,6 +16,11 @@
 	}
 
 	if(in_array('wp-mpdf/wp-mpdf.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+
+		add_filter( 'mpdf_output_pdf_filename', 'my_custom_file_name', 1 );
+		function my_custom_file_name( $pdf_filename ) {
+			return "avalare-".$pdf_filename;
+		}
 	    
 		function mpdf_pdfbutton_my( $opennewtab = false, $buttontext = '', $logintext = 'Login!', $print_button = true, $nofollow = false, $options = array() ) {
 			$nofollowHtml = '';
@@ -73,7 +78,7 @@
 			if ( $opennewtab == true ) {
 				$pdf_button .= 'target="_blank" ';
 			}
-			$pdf_button .= 'class="pdfbutton" href="' . apply_filters( 'the_permalink', get_permalink() ) . $x . 'output=pdf" download>' . __( $buttontext, 'wp-mpdf' ) . '</a>';
+			$pdf_button .= 'class="pdfbutton" rel="nofollow" href="' . apply_filters( 'the_permalink', get_permalink() ) . $x . 'output=pdf" download>' . __( $buttontext, 'wp-mpdf' ) . '</a>';
 
 			if ( $print_button === true ) {
 				echo $pdf_button;

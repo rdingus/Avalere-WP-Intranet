@@ -21,7 +21,14 @@ $address = get_post_meta($post->ID, 'emd_employee_address', true);
 $twitter = get_post_meta($post->ID, 'emd_employee_twitter', true);
 $linkedin = get_post_meta($post->ID, 'emd_employee_linkedin', true);
 $post_authors = get_field('post_authors',$post->ID);
-?>
+$desc1 = get_the_content($post->ID);
+
+if($desc1 == ''){
+	echo '<meta name="robots" content="noindex">';
+}?>
+
+<?php echo do_shortcode('[myjsonld]'); ?>
+
 <div id="content-wrap" class="container clr">
     <?php wpex_hook_primary_before(); ?>
     <section id="primary" class="content-area clr" style="padding-bottom:0px;">
@@ -109,14 +116,14 @@ $post_authors = get_field('post_authors',$post->ID);
 								}
 								*/
 								
-								/* Updated Code */
+								/* Dough Code */
 								$matches = null;
 								preg_match('/[a-z]\./', $post->post_content, $matches, PREG_OFFSET_CAPTURE);
 
 								if (count($matches) > 0) {
 								    $firstMatch = reset($matches);
 
-								    $post->post_content = '<div class="emd-effect">' . substr($post->post_content, 0, $firstMatch[1] + strlen($firstMatch[0]))."</p></div><p>".trim(substr($post->post_content, $firstMatch[1]+ strlen($firstMatch[0])));
+								    $post->post_content = '<div class="emd-effect" style="margin-bottom: 30px;">' . substr($post->post_content, 0, $firstMatch[1] + strlen($firstMatch[0]))."</p></div><p>".trim(substr($post->post_content, $firstMatch[1]+ strlen($firstMatch[0])));
 								}
     
 								$post->post_content = str_ireplace("<p>&nbsp;</p>","", str_ireplace("</p><br><p>","</p>\n<p>",$post->post_content));
@@ -181,8 +188,6 @@ $post_authors = get_field('post_authors',$post->ID);
                             <?php
                             foreach ($posts as $postauthor) {
                                 $postTitle = $postauthor->post_title;
-
-                                // prepend media type category to post titles
                                 if(has_category(5,$postauthor->ID)){
                                     $catname = 'Podcast: ';
                                 }elseif(has_category(4,$postauthor->ID)){
@@ -191,8 +196,7 @@ $post_authors = get_field('post_authors',$post->ID);
                                     $catname = 'Webinar: ';
                                 }else{
                                     $catname = '';
-                                }  
-
+                                }                                
                                 if (has_post_thumbnail($postauthor->ID)) {
                                     $objectImage = wp_get_attachment_image_src(get_post_thumbnail_id($postauthor), 'full');
                                     $postimage = $objectImage[0];
@@ -201,11 +205,14 @@ $post_authors = get_field('post_authors',$post->ID);
                                 }
                                 $url = get_permalink($postauthor->ID);
                                 $postMedia = wp_get_post_terms($postauthor->ID, 'category');
+
                                 $postMediaString = implode(', ', array_map(function($cat) {
                                             return '<a href="'.get_term_link($cat).'">'.$cat->name.'</a>';
                                         }, $postMedia));
 										
+										
                                 $postCategories = wpex_list_post_terms_custom('content-categories',true,false,$postauthor->ID);
+
                                 
                                 $desc = get_field('post_summary', $postauthor->ID);
                                 ?>

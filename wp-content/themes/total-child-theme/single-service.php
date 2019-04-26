@@ -61,7 +61,7 @@ if (isset($featuredInsightsIds)) {
 
         $featuredContent = new WP_Query($args);
 }*/
-global $post;
+/*global $post;
 		$postsarray = array();		
 		$posts = NULL;		
 		$args   = array(
@@ -74,7 +74,7 @@ global $post;
         );
 		
  wp_reset_query();
-        $featuredContent = new WP_Query($args); 
+        $featuredContent = new WP_Query($args); */
 ?>
 
 <div id="content-wrap" class="container clr">
@@ -154,6 +154,22 @@ global $post;
                     </div>
                 </div>
             <?php } ?>
+            <?php 
+            global $post;
+        $postsarray = array();      
+        $posts = NULL;      
+        $args   = array(
+            'post_type' => 'post',
+            'order' => 'DESC',
+            'orderby' => 'date',            
+            'post_status' => 'publish',
+            'posts_per_page' => '3',  
+            'meta_query'=>array(array('key'=>'related_services','value'=>sprintf(':"%s";', $post->ID),'compare'=>'LIKE'))           
+        );
+        
+ wp_reset_query();
+        $featuredContent = new WP_Query($args); 
+        ?>
             <?php if ($featuredContent->have_posts()) { 
 			$wpex_columns = apply_filters( 'wpex_related_blog_posts_columns', wpex_get_mod( 'blog_related_columns', '3' ) );
 			?>

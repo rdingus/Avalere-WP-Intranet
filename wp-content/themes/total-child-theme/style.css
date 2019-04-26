@@ -1,9 +1,9 @@
 /*
 Theme Name: Avalere Child
-Theme URI: http://avalere.com
+Theme URI: http://dingusmedia.com
 Description: Avalere child theme.
-Author: Avalere 
-Author URI: http://avalere.com
+Author: Ryan Dingus
+Author URI: http://dingusmedia.com
 Template: Total
 Version: 1.1
 */
@@ -149,98 +149,13 @@ body #content-wrap {
 	/*margin-bottom: 10px!important;*/
 }
 
-	
-.vc_custom_1537953889057.wpb_row {
-	margin-bottom: 150px;	
-}
-
 @media only screen and (max-width: 767px) {
-	.vc_column_container>.vc_column-inner {	
-		margin-bottom: 0; 
-	}
-
-	.avalere-vc-custom-row .vc_column_container>.vc_column-inner {
-		margin-bottom: 0;
+.vc_column_container>.vc_column-inner {	
+	margin-bottom: 10px !important;
 	}
 	h1.jump-header {
 		margin-bottom: 20px;
 		width: 100%;
-		font-size: 60px;
-	}
-	
-	.nr-col:last-child {
-		margin-bottom: 0;
-	}
-	
-	.single_statistic-wrapper {
-		padding-top: 30px;
-		padding-bottom: 30px;
-	}
-	
-	.single_connect-wrapper .contentWrapper {
-		margin-top: 10px;
-		margin-bottom: 0;
-	}
-	
-	.vc_custom_1538468618650 .wpb_column:last-child {
-		margin-bottom: 30px;		
-	}
-
-	.vc_custom_1537953889057.wpb_row {
-		margin-bottom: 275px;	
-	}
-	
-	.single_connect-wrapper a.connectbutton {
-		margin-top: 10px;
-		margin-bottom: 30px;
-	}
-	
-	.address-map-wrapper .addressOuterWrapper {
-		margin-bottom: 30px;
-	}
-	
-	.team-wrapper .view-type-wrapper {
-		margin-top: 20px;
-		margin-left: 0;
-	}
-	
-	.team-wrapper .view-type-wrapper ul li:first-child a {
-		margin-left: 0;
-	}
-	
-	.list-header-wrapper {
-		display: none;
-	}
-	
-	.team-wrapper.list-view .list .member-wrapper .vc_column_container {
-		padding-top: 0;
-		padding-bottom: 0;
-		line-height: 1.3em;
-	}
-	.team-wrapper.list-view .list .member-wrapper .vc_column_container:first-child {
-		padding-top: 15px;
-	}
-	
-	.team-wrapper.list-view .list .member-wrapper .vc_column_container:last-child {
-		padding-bottom: 15px;
-	}
-	
-	.team-wrapper.list-view .list a.email {
-		margin-top: 5px;
-		padding: 7px 10px;
-	}
-	
-	.emd-effect {
-		font-size: 30px;
-		line-height: 1.15em;
-	}
-	
-	.single-member-inner-wrapper .member-title h1 {
-		margin-top: 30px;	
-	}
-	
-	.vc_tta-title-text {
-		color: #00365a;
 	}
 }
 
@@ -272,10 +187,6 @@ body #content-wrap {
 }
 .background-image-page-header-overlay {
     display:none;
-}
-
-.sidr-class-dropdown-menu ul a:before {
-	content: "";
 }
 /*#site-navigation .dropdown-menu > li > a > span.link-inner {
     position: relative;
@@ -453,17 +364,6 @@ body #content-wrap {
 .related-posts .related-post {
     padding: 0 30px 0 0;
 }
-
-@media only screen and (max-width: 767px) {
-	.featuredPostWrapper {
-		padding-bottom: 20px;
-	}
-	
-	.related-posts .related-post {
-    	padding: 0;
-	}
-}
-
 .related-posts .related-post:last-child {
     padding: 0;
 }
@@ -481,7 +381,7 @@ body #content-wrap {
 }
 .related-posts .related-post-title.entry-title {
     font-size: 18px !important;
-	line-height: 1.2em;
+line-height: 20px;
     min-height: 40px;}
 .related-posts p {
     font-size: 14px;
@@ -518,7 +418,7 @@ body #content-wrap {
 }
 .related-posts .post_authors li span:hover {color: #6b818c;}
 .related-posts .meta-category a:hover {color: #6b818c;}
-.related-posts .meta-category a {
+.related-posts .meta-category, .related-posts .meta-category a {
     display: block;
     color: #028cca;
     font-size: 14px;
@@ -537,18 +437,6 @@ body #content-wrap {
     letter-spacing: -0.01em;
 	width:1000px;
 }
-
-@media (max-width: 767px) and (min-width: 0px) {
-	.single-post-title.entry-title {
-		margin-top: 20px;
-		line-height: 1.15em;
-	}
-	
-	.post-header span.emp_name {
-		border-right: 0;
-	}
-}
-
 .authors-details img {
     height: 61px;
     width: 61px;
@@ -817,20 +705,6 @@ header.single-blog-header.clr {
     font-size: 38px;
     line-height: 47px;
 }
-
-@media (max-width: 767px) and (min-width: 0px) {
-	.author_quotes, .author_quotes.post-container q {
-		font-size: 30px;
-		line-height: 1.15em;
-		margin-top: 50px;
-		margin-bottom: 45px;
-	}
-	
-	.panelists_section {
-		margin-top: 45px;
-	}
-}
-
 .author_quotes.post-container .quotes_author_name {
     font-size: 18px;
     display: block;
@@ -966,7 +840,7 @@ header.single-blog-header.clr {
     font-size: 16px;
     font-weight: bold;
     color: #27405d;
-    line-height: 1.2em;
+    line-height: 16px;
 }
 .entries.left-thumbs p {
     font-size: 16px;
@@ -1049,7 +923,7 @@ header.single-blog-header.clr {
     background: #ffffff;
 }
 .wpex-pagination {
-    padding: 0 30px 50px 30px;
+    padding: 0 30px 100px 30px;
 }
 .wpex-pagination .current {
     background: #27405d !important;
@@ -1214,12 +1088,7 @@ header.single-blog-header.clr {
     margin: 0;
 }
 #category-archive-searchform {
-	margin-top: 0;
-}
-
-@media (max-width: 767px) and (min-width: 0px) {
-	#category-archive-searchform {margin-top: 0;}
-}
+	margin-top:23px}
 
 #category-archive-searchform ul li {
     display: inline-block;
@@ -1284,13 +1153,6 @@ footer .wpex-linkedin {
     font-size: 18px;
     line-height: 22px;
     color: #1b3659;
-}
-
-@media (max-width: 767px) and (min-width: 0px) {
-	.panelists-content {
-		margin-top: 20px;
-		width: 100%;
-	}
 }
 
 .panelists-content .staff_post_department {
@@ -1374,7 +1236,7 @@ footer .wpex-linkedin {
     letter-spacing: 0;
 }
 	#category_landing_title {
-    padding: 20px 45px 0px 45px !important;
+    padding: 40px 45px 0px 45px !important;
     background: #ffffff;
 }
 	
@@ -1391,7 +1253,7 @@ footer .wpex-linkedin {
 	
 	#category-archive-searchform label {width:inherit !important;}
 	
-	.vc_column-inner{ margin-bottom:0px;}
+	.vc_column-inner{ margin-bottom:10px !important}
 	
 	.blog-entry-content.entry-details.clr {
     padding-left:0px !important;
@@ -1461,7 +1323,7 @@ footer .wpex-linkedin {
     }
     .post-container {
         width: 100%;
-        padding: 0 30px;
+        /*padding: 30px;*/
     }
     .post-container ul.pdf_chart {
         margin: 0;
@@ -1472,10 +1334,10 @@ footer .wpex-linkedin {
         margin-bottom: 0;
     }
     .products-services .theme-heading.border-w-color {
-        margin-bottom: 0;
+        margin-bottom: 20px;
     }
     .products-services .quotes {
-        margin-bottom: 35px;
+        margin-bottom: 15px;
     }
     .products-services .theme-heading.border-w-color {
         width: 100%;
@@ -1557,3 +1419,7 @@ footer .wpex-linkedin {
     margin-right: 20px;
 }
 /****************/
+
+.sidr-class-dropdown-menu ul a:before {
+	content: "";
+}

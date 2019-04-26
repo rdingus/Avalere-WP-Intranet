@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 get_header(); ?>
 
+<?php echo do_shortcode('[myjsonld]'); ?>
+
 	<div id="content-wrap" class="container clr">
 
 		<?php wpex_hook_primary_before(); ?>

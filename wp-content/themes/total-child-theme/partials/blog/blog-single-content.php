@@ -146,7 +146,7 @@ if(!empty($thecontent)) { ?>
 <?php the_content(); ?>
 </div>
 <?php } ?> 
-
+<?php echo do_shortcode('[myjsonld]'); ?>
 
 <?php
 if (has_category('webinars')) {

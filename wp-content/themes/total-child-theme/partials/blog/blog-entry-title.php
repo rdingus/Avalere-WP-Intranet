@@ -47,7 +47,13 @@ if ('custom_text' == wpex_get_mod('blog_single_header', 'custom_text')) {
             elseif ('categories' == $val && get_post_type() != 'service')  :
                 ?>
                 <li class="umbrella-category">
-                    <?php wpex_list_post_terms_custom('content-categories', true); ?>
+                    <?php 
+					if ( is_tax('content-categories' ) ) {
+		 $terms = get_the_terms ($post->id, 'content-categories');
+		 $cat_links = wp_list_pluck($terms, 'name'); 
+    	 $skills_name = implode(", ", $cat_links);
+		 echo $skills_name; }else
+	 	wpex_list_post_terms_custom('content-categories',true,true,get_the_ID());?>
                 </li>
                 <?php
             endif;
@@ -58,11 +64,11 @@ if ('custom_text' == wpex_get_mod('blog_single_header', 'custom_text')) {
         <?php }?>
     </ul>
 </div>
-<header class="blog-entry-header wpex-clr">
+<header class="blog-entry-header wpex-clr parvez">
 <?php if (get_post_type() == 'service') : ?>
     <h2 class="blog-entry-title entry-title"><a href="<?php wpex_permalink(); ?>" rel="bookmark"><?php the_field('subheading'); ?></a></h2>
 <?php else: ?>
-	<?php if(is_tax('content-categories')){
+	<?php if(/*is_category() || */is_tax('content-categories') ){
 		if(has_category(5,get_the_ID())){
 			$catname = 'Podcast: ';
 		}elseif(has_category(4,get_the_ID())){
@@ -72,7 +78,7 @@ if ('custom_text' == wpex_get_mod('blog_single_header', 'custom_text')) {
 		}else{
 			$catname = '';
 		}
-
+		
 		?>
     <h2 class="blog-entry-title entry-title"><a href="<?php wpex_permalink(); ?>" rel="bookmark"><?php echo $catname;?><?php the_title(); ?></a></h2>
     <?php }else{?>

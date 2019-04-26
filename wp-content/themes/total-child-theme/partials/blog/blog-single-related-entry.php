@@ -73,14 +73,20 @@ $classes[] = 'col-' . $wpex_count;
       <?php }?>     
       <?php if(wp_get_post_terms(get_the_ID(),'content-categories')){?>
       <li class="meta-category">
-        <?php wpex_list_post_terms_custom('content-categories',true,true,get_the_ID()); ?>
+      
+        <?php
+		if ( is_tax('content-categories' ) ) {
+		 $terms = get_the_terms ($post->id, 'content-categories');
+		 $cat_links = wp_list_pluck($terms, 'name'); 
+    	 $skills_name = implode(", ", $cat_links);
+		 echo $skills_name; } else
+	 	wpex_list_post_terms_custom('content-categories',true,true,get_the_ID()); ?>
       </li>
       <?php }?>
     </ul>
       <?php
-      // display category in post title for Contet Category landing pages, Service landing page, Service detail pages, Audience pages
       $catname = '';
-      if(is_single() || is_tax('content-categories') || 'service' == get_post_type() || is_page('services') || is_page(9025) || is_page(12152) || is_page(12154) || is_page(12156) ) {
+      if(is_single() || is_tax('content-categories') || is_page('services') || is_page(9025) || 'service' == get_post_type()) {
         if(has_category(5,get_the_ID())){
             $catname = 'Podcast: ';
         }elseif(has_category(4,get_the_ID())){
@@ -90,7 +96,10 @@ $classes[] = 'col-' . $wpex_count;
         }else{
             $catname = '';
         }
-      }
+      } 
+      /*else {
+        $catname = '';
+      }*/
       ?>
     <h4 class="related-post-title entry-title"> <a href="<?php wpex_permalink(); ?>" rel="bookmark">
       <?php //$hout = the_title(); $tout = strlen($hout) > 60 ? substr($hout,0,60)."..." : $hout;?>

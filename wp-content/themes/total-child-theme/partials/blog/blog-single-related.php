@@ -34,7 +34,7 @@ if (has_category('podcasts', $post_id)) {
 
                         $url = get_the_permalink($value->ID);
                         ?>
-                        <article class = "single-related-podcast clr nr-col post-<?php echo $value->ID; ?> post type-post status-publish format-standard has-post-thumbnail hentry entry has-media">
+                        <article class = "single-related-podcast clr nr-col post-<?php echo $value->ID; ?> post type-post status-publish format-standard has-post-thumbnail entry has-media">
                             <!--<div class="podcast-icon">
                                 <img src="<?php //echo get_stylesheet_directory_uri(); ?>/images/podcast-icon.png"/>
                             </div>-->
@@ -81,7 +81,7 @@ if (has_category('podcasts', $post_id)) {
                                     </ul>
                                 </div>
                                 <h4 class = "related-podcast-title entry-title">
-                                    <a href = "<?php echo $url; ?>" rel = "bookmark"><?php echo $value->post_title; ?></a>
+                                    <a href = "<?php echo $url; ?>" rel = "bookmark"><?php echo "Podcast: " . $value->post_title; ?></a>
                                 </h4>
 
                                 <?php
@@ -437,7 +437,7 @@ if (!empty($totalIdArr)):
                 if ($i > 3)
                     continue;
                 ?>
-                <article class = "related-products clr nr-col span_1_of_3 col-<?php echo $i; ?> post-<?php echo $service_id; ?>  post type-post status-publish format-standard has-post-thumbnail hentry entry has-media">
+                <article class = "related-products clr nr-col span_1_of_3 col-<?php echo $i; ?> post-<?php echo $service_id; ?>  post type-post status-publish format-standard has-post-thumbnail entry has-media">
                     <figure class = "related-post-figure clr " style="display:block;">
                         <a href = "<?php echo $serviceLink; ?>" title = "<?php echo $serviceData->post_title; ?>" rel = "bookmark" class = "related-post-thumb">
                             <img src = "<?php echo (isset($serviceImage['url']) && $serviceImage['url'] != "") ? $serviceImage['url'] : ''; ?>"> </a>
