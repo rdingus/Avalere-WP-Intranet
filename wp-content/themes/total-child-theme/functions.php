@@ -992,13 +992,14 @@ if($postAuthorsIds){
 			$args = array_merge($args, $publisher_args);
 			}
 
-		$video_embed_url = get_post_meta(get_the_ID() , $key = 'video_embed_url');        $video_thumbnail = get_post_meta(get_the_ID() , $key = 'video_thumbnail');		
+		$video_embed_url = get_post_meta(get_the_ID() , $key = 'video_embed_url');
+        $video_thumbnail = wp_get_attachment_image_src(get_post_meta($post->ID, 'video_thumbnail', true), "full");		
 		$args['video'] = array(
 			'@type' => 'VideoObject',
 			"name" => get_the_title() ,
 			"description" => $content,
 			"embedurl" => $video_embed_url,
-			"thumbnailurl" => $video_thumbnail,
+            "thumbnailurl" => $video_thumbnail[0],
 			'uploadDate' => get_the_time(DATE_ISO8601, $post->ID) ,
 			
 		);
